@@ -12,14 +12,18 @@ def detect():
     try:
         model = torch.hub.load('ultralytics/yolov5', 'custom', weigth )
         results = model(imgUrl)
-
+        print(results.xyxy[0] )
+        print(results.pandas().xyxy[0] )
         return jsonify({
             "weigthURL":"Detected",
        
         })
-    except:
+    except Exception as e:
+        print(type(str(e)))
         return jsonify({
-            "weigthURL":"not Detected",})
+            "weigthURL":"not Detected",
+            "error":str(e)
+        })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = 5000)
