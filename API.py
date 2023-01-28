@@ -10,8 +10,8 @@ def detect():
     weigth= reqRef["model"]
     imgUrl=reqRef["imgUrl"]
     try:
-        model = torch.hub.load('ultralytics/yolov5', 'custom', weigth )
-        results = model(imgUrl)
+        model = torch.hub.load('ultralytics/yolov5', 'custom', "best.tflite" ,force_reload=True)
+        results = model("1.jpeg")
         print(results.xyxy[0] )
         print(results.pandas().xyxy[0] )
         return jsonify({
