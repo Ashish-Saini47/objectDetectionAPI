@@ -10,7 +10,7 @@ def detect():
     weigth= reqRef["model"]
     imgUrl=reqRef["imgUrl"]
     try:
-        model = torch.hub.load('ultralytics/yolov5', 'custom', "best.tflite" ,force_reload=True)
+        model = torch.hub.load('ultralytics/yolov5', 'custom', path="best.tflite" ,force_reload=True)
         results = model("1.jpeg")
         print(results.xyxy[0] )
         print(results.pandas().xyxy[0] )
